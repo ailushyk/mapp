@@ -1,0 +1,25 @@
+.layout {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  height: 100vh;
+  background-color: var(--background);
+
+  .layout__header {
+    color: var(--foreground);
+    padding-inline: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .layout__content {
+    padding: 1rem;
+    overflow-y: auto;
+  }
+
+  .layout__footer {
+    background-color: var(--muted-bg);
+    color: var(--foreground);
+    padding-inline: 1rem;
+  }
+}
+

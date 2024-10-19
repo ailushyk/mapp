@@ -1,34 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { Layout } from './component/layout/Layout.tsx'
+import { Link } from './component/Link.tsx'
+import { Nav, NavItem } from './component/Nav.tsx'
+import { TransactionsPage } from './pages/TransactionsPage.tsx'
+
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <Layout>
+      <Layout.Header>
+        <Nav>
+          <NavItem>
+            <Link href="/">Home</Link>
+          </NavItem>
+          <NavItem>
+            <Link href="/transactions">Transactions</Link>
+          </NavItem>
+          <NavItem>
+            <Link href="/about">About</Link>
+          </NavItem>
+        </Nav>
+      </Layout.Header>
+
+      <Layout.Content>
+        <TransactionsPage />
+      </Layout.Content>
+
+      <Layout.Footer>
+        <footer>
+          <p>&copy; 2024 MApp</p>
+        </footer>
+      </Layout.Footer>
+    </Layout>
   )
 }
 

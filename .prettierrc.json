@@ -5,10 +5,11 @@
     "@ianvs/prettier-plugin-sort-imports"
   ],
   "importOrder": [
-    "<BUILTIN_MODULES>",
+    "^(react/(.*)$)|^(react$)",
     "<THIRD_PARTY_MODULES>",
     "",
     "^@/(.*)$",
+    "^@/lib/(.*)$",
     "^@/components/(.*)$",
     "^@/ui/(.*)$",
     "^@/assets/(.*)$",

@@ -1,0 +1,10 @@
+.link {
+  font-weight: 500;
+  color: var(--muted-foreground);
+  text-decoration: inherit;
+  transition: color var(--transition-time) ease-out;
+}
+
+.link:hover {
+  color: var(--foreground);
+}
