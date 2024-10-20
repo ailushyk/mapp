@@ -1,0 +1,16 @@
+.avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-color: var(--accent-bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--border);
+
+  .avatar__initials {
+    color: var(--accent-foreground);
+    font-size: 1rem;
+    font-weight: 500;
+  }
+}

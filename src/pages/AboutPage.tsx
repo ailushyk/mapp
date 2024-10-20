@@ -1,3 +1,5 @@
+import { PageTitle } from '../components/page-title/PageTitle.tsx'
+
 export const AboutPage = () => {
-  return <h1>About</h1>
+  return <PageTitle>About</PageTitle>
 }

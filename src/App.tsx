@@ -1,9 +1,7 @@
-import { Layout } from './component/layout/Layout.tsx'
-import { Link } from './component/Link.tsx'
-import { Nav, NavItem } from './component/Nav.tsx'
+import { Layout } from './components/layout/Layout.tsx'
+import { Link } from './components/Link.tsx'
+import { Nav, NavItem } from './components/Nav.tsx'
 import { TransactionsPage } from './pages/TransactionsPage.tsx'
-
-import './App.css'
 
 function App() {
   return (

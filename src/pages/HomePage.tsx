@@ -1,17 +1,17 @@
-import { Button } from '../component/button/Button.tsx'
-import { Heading } from '../component/Heading.tsx'
-import { PageHeader } from '../component/page-header/PageHeader.tsx'
-import { PageTitle } from '../component/page-header/PageTitle.tsx'
+import { Button } from '../components/button/Button.tsx'
+import { Header } from '../components/header/Header.tsx'
+import { Heading } from '../components/Heading.tsx'
+import { PageTitle } from '../components/page-title/PageTitle.tsx'
 
-import './HomePage.css'
+import './home-page.css'
 
 export const HomePage = () => {
   return (
     <main>
-      <PageHeader>
+      <Header>
         <PageTitle>MApp</PageTitle>
         <Heading level={2}>The best app for managing your money</Heading>
-      </PageHeader>
+      </Header>
 
       <div className="dashboard">
         <Button
