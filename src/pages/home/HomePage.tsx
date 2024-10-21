@@ -1,7 +1,7 @@
-import { Button } from '../components/button/Button.tsx'
-import { Header } from '../components/header/Header.tsx'
-import { Heading } from '../components/Heading.tsx'
-import { PageTitle } from '../components/page-title/PageTitle.tsx'
+import { Button } from '../../components/button/Button.tsx'
+import { Header } from '../../components/header/Header.tsx'
+import { Heading } from '../../components/Heading.tsx'
+import { PageTitle } from '../../components/page-title/PageTitle.tsx'
 
 import './home-page.css'
 

@@ -1,7 +1,7 @@
 import { Layout } from './components/layout/Layout.tsx'
 import { Link } from './components/Link.tsx'
 import { Nav, NavItem } from './components/Nav.tsx'
-import { TransactionsPage } from './pages/TransactionsPage.tsx'
+import { TransactionsPage } from './pages/transactions/TransactionsPage.tsx'
 
 function App() {
   return (
