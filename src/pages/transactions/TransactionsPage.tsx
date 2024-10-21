@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import { Avatar } from '@/components/avatar/Avatar.tsx'
 import { Box } from '@/components/box/Box.tsx'
 import { Button } from '@/components/button/Button.tsx'
@@ -8,7 +10,17 @@ import { Transaction } from '@/components/transaction/Transaction.tsx'
 import { useTransactionsData } from '@/pages/transactions/useTransactionsData.ts'
 
 export const TransactionsPage = () => {
-  const { data, nextPage } = useTransactionsData()
+  const [q, setQ] = useState<string | undefined>()
+  const { data, isLoading, nextPage } = useTransactionsData({
+    q,
+  })
+
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
+  if (!data.length) {
+    return <div>No transactions found</div>
+  }
 
   return (
     <main>
@@ -28,7 +40,7 @@ export const TransactionsPage = () => {
           </Transaction.ListItem>
         ))}
       </List>
-      <Button onClick={nextPage}>Load More</Button>
+      <Button onClick={() => nextPage()}>Load More</Button>
     </main>
   )
 }

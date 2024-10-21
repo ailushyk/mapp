@@ -1,7 +1,5 @@
 import { env } from '@/env.ts'
 
-export const LIMIT = 10
-
 export const fetcher = async <T>({
   url,
 }: {
