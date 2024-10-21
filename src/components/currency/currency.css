@@ -1,0 +1,7 @@
+.currency.currency--positive {
+  color: var(--positive);
+}
+
+.currency.currency--negative {
+  color: var(--negative);
+}

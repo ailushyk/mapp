@@ -4,14 +4,6 @@
 .transaction__amount {
 }
 
-.transaction__amount--positive {
-  color: var(--positive);
-}
-
-.transaction__amount--negative {
-  color: var(--negative);
-}
-
 /* LIST ITEM */
 .transaction-list-item {
   display: flex;

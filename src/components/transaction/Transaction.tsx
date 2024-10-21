@@ -1,10 +1,10 @@
 import React from 'react'
-import cn from 'clsx'
 
 import { Box } from '@/components/box/Box.tsx'
-import { currency } from '@/libs/currency.ts'
 
 import './transaction.css'
+
+import { Currency } from '@/components/currency/Currency.tsx'
 
 type TransactionProps = {
   children: React.ReactNode
@@ -20,16 +20,7 @@ Transaction.Beneficiary = function Beneficiary({ children }: TransactionProps) {
 }
 
 Transaction.Amount = function Amount({ children }: { children: number }) {
-  return (
-    <div
-      className={cn('transaction__amount', {
-        'transaction__amount--positive': children > 0,
-        'transaction__amount--negative': children < 0,
-      })}
-    >
-      {currency(children)}
-    </div>
-  )
+  return <Currency className="transaction__amount">{children}</Currency>
 }
 
 Transaction.ListItem = function ListItem({ children }: TransactionProps) {

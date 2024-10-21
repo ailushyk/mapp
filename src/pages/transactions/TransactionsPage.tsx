@@ -16,8 +16,9 @@ export const TransactionsPage = () => {
   })
 
   if (isLoading) {
-    return <div>Loading...</div>
+    return <Loading />
   }
+
   if (!data.length) {
     return <div>No transactions found</div>
   }
@@ -25,6 +26,11 @@ export const TransactionsPage = () => {
   return (
     <main>
       <PageTitle>Transactions</PageTitle>
+
+      {/* Add transaction */}
+      {/* Balance */}
+      <Balance />
+      {/* Filters */}
 
       <List>
         {data.map((transaction) => (
