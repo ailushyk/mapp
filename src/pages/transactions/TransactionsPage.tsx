@@ -5,6 +5,7 @@ import { Balance } from '@/components/balance/Balance.tsx'
 import { Box } from '@/components/box/Box.tsx'
 import { DateTime } from '@/components/date-tiem/DateTime.tsx'
 import { Filters, FiltersFormValues } from '@/components/filters/Filters.tsx'
+import { Heading } from '@/components/Heading.tsx'
 import { InfiniteScrollAnchor } from '@/components/infinite-scroll/InfiniteScrollAnchor.tsx'
 import { InfoMessage } from '@/components/info-message/InfoMessage.tsx'
 import { List } from '@/components/list/List.tsx'
@@ -20,7 +21,10 @@ import { useTransactionsData } from '@/pages/transactions/useTransactionsData.ts
 import { TransactionValue } from '@/types.ts'
 
 export const TransactionsPage = () => {
-  const [filters, setFilters] = useState<FiltersFormValues>()
+  const [filters, setFilters] = useState<FiltersFormValues>({
+    q: '',
+    beneficiary: '',
+  })
   const { data, isLoadingMore, endOfData, nextPage, mutate } =
     useTransactionsData({
       ...filters,
@@ -28,37 +32,52 @@ export const TransactionsPage = () => {
   const transactions = data ? (data.flat() as TransactionValue[]) : []
 
   const addTransaction = async (values: TransactionFormValues) => {
-    const body = JSON.stringify({
-      ...values,
-      date: new Date().toISOString(),
-    })
-    const result: Awaited<TransactionValue | null> = await fetcher({
-      url: '/transactions',
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body,
-    })
-    if (result && data) {
-      await mutate([[result], ...data])
+    try {
+      const body = JSON.stringify({
+        ...values,
+        date: new Date().toISOString(),
+      })
+      const result: Awaited<TransactionValue | null> = await fetcher({
+        url: '/transactions',
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body,
+      })
+      if (result && data) {
+        await mutate([[result], ...data])
+        alert('Transaction added')
+      }
+    } catch (e) {
+      alert('Error adding transaction')
+      console.error(e)
     }
   }
 
   return (
     <main>
-      <PageTitle>Transactions</PageTitle>
+      <PageTitle>Transactions Page</PageTitle>
 
-      <Box>
-        <TransactionForm onSubmit={addTransaction} />
+      <Box flex="column" className="mb-8">
+        <Box className="border p-4">
+          <Heading level={2}>Add Transaction</Heading>
+          <TransactionForm onSubmit={addTransaction} />
+        </Box>
+
+        <Box className="border p-4">
+          <Heading level={2}>Balance</Heading>
+          <Balance filters={filters} />
+        </Box>
+
+        <Box className="border p-4">
+          <Heading level={2}>Filters</Heading>
+          <Filters values={filters} onChange={setFilters} />
+        </Box>
       </Box>
 
-      {/* Balance */}
-      <Balance filters={filters} />
-      {/* Filters */}
-      <Filters values={filters} onChange={setFilters} />
-
       <List>
+        <Heading level={2}>Transactions</Heading>
         {transactions.map((transaction) => (
           <Transaction.ListItem key={transaction.id}>
             <Avatar alt={transaction.beneficiary} />

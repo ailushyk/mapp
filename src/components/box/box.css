@@ -1,0 +1,27 @@
+.box {
+  /*border: 1px solid var(--border);*/
+  /*border-radius: var(--radius);*/
+  /*padding: 1rem;*/
+}
+
+.box--flex-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+}
+.box--flex-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+/*.flex {*/
+/*  display: flex;*/
+/*  justify-content: space-between;*/
+/*  gap: 2rem;*/
+/*}*/
+
+/*.direction-column {*/
+/*  flex-direction: column;*/
+/*}*/

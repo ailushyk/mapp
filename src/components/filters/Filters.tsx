@@ -4,6 +4,16 @@ import * as z from 'zod'
 
 import { Button } from '@/components/button/Button.tsx'
 import { filtersSchema } from '@/components/filters/filters-schema.ts'
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/form/Form.tsx'
+import { Input } from '@/components/form/Input.tsx'
 
 export type FiltersFormValues = z.infer<typeof filtersSchema>
 
@@ -14,12 +24,9 @@ interface FiltersProps {
 }
 
 export function Filters({ values, isDisabled, onChange }: FiltersProps) {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FiltersFormValues>({
+  const form = useForm<FiltersFormValues>({
     resolver: zodResolver(filtersSchema),
+    defaultValues: values,
   })
 
   const onSubmit = (data: FiltersFormValues) => {
@@ -27,26 +34,48 @@ export function Filters({ values, isDisabled, onChange }: FiltersProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <fieldset disabled={isDisabled}>
-        <div>
-          <label htmlFor="q">Search</label>
-          <input id="q" defaultValue={values?.q} {...register('q')} />
-          {errors.q?.message && <p>{errors.q?.message}</p>}
-        </div>
-        <div>
-          <label htmlFor="beneficiary">Beneficiary</label>
-          <input
-            id="beneficiary"
-            defaultValue={values?.beneficiary}
-            {...register('beneficiary')}
-          />
-          {errors.beneficiary?.message && <p>{errors.beneficiary?.message}</p>}
-        </div>
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)}>
+        <FormField
+          control={form.control}
+          name="q"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Full Text Search</FormLabel>
+              <FormControl>
+                <Input placeholder="" {...field} />
+              </FormControl>
+              <FormDescription>
+                Search by description, beneficiary, or address and another
+                fields.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="beneficiary"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Beneficiary</FormLabel>
+              <FormControl>
+                <Input placeholder="John D." {...field} />
+              </FormControl>
+              <FormDescription>
+                Search by description, beneficiary, or address and another
+                fields.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
         <Button type="submit" size="sm" variant="secondary">
           Search
         </Button>
-      </fieldset>
-    </form>
+      </form>
+    </Form>
   )
 }
