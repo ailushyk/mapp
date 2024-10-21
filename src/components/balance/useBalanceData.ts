@@ -31,7 +31,8 @@ export const useBalanceData = ({
    */
   const balance = useMemo(() => {
     const sum = data?.reduce((acc, { amount }) => {
-      return acc + Math.round(amount * 100)
+      const val = Number(amount)
+      return acc + Math.round((isNaN(val) ? 0 : val) * 100)
     }, 0)
     return sum ? sum / 100 : 0
   }, [data])

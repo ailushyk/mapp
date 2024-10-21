@@ -23,8 +23,9 @@ const transactionsApiKey =
   }
 
 export const useTransactionsData = (query?: TransactionsQueryParams) => {
-  const { data, size, setSize, isLoading } = useSWRInfinite(
-    transactionsApiKey({ ...initialParams, ...query }),
+  const key = transactionsApiKey({ ...initialParams, ...query })
+  const { data, size, setSize, isLoading, mutate } = useSWRInfinite(
+    key,
     ([url, query]: [string, TransactionsQueryParams]) => {
       return fetchWithParams<TransactionValue[], TransactionsQueryParams>(
         url,
@@ -32,7 +33,7 @@ export const useTransactionsData = (query?: TransactionsQueryParams) => {
       )
     },
     {
-      revalidateFirstPage: false,
+      // revalidateFirstPage: true,
     },
   )
 
@@ -44,10 +45,11 @@ export const useTransactionsData = (query?: TransactionsQueryParams) => {
   }
 
   return {
-    data: data ? (data.flat() as TransactionValue[]) : [],
+    data,
     isLoading,
     isLoadingMore,
     endOfData: data && data[data.length - 1]?.length === 0,
     nextPage,
+    mutate,
   }
 }

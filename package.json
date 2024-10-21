@@ -13,6 +13,8 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
+    "@radix-ui/react-label": "^2.1.0",
+    "@radix-ui/react-slot": "^1.1.0",
     "clsx": "^2.1.1",
     "modern-normalize": "^3.0.1",
     "react": "^17.0.2",
