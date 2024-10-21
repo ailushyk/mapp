@@ -1,15 +1,14 @@
-import { useMemo } from 'react'
 import useSWRInfinite, { SWRInfiniteKeyLoader } from 'swr/infinite'
 
 import { env } from '@/env.ts'
 import { fetchWithParams } from '@/libs/api/fetch-with-params.ts'
 import type { ApiRequestParams, TransactionValue } from '@/types.ts'
 
-interface QueryParams extends ApiRequestParams {
+export interface TransactionsQueryParams extends ApiRequestParams {
   beneficiary?: string
 }
 
-const initialParams: QueryParams = {
+const initialParams: TransactionsQueryParams = {
   page: '1',
   limit: String(env.LIMIT),
   sort: 'date',
@@ -17,26 +16,20 @@ const initialParams: QueryParams = {
 }
 
 const transactionsApiKey =
-  (_query: QueryParams): SWRInfiniteKeyLoader<TransactionValue[]> =>
+  (_query: TransactionsQueryParams): SWRInfiniteKeyLoader<TransactionValue[]> =>
   (pageIndex, previousPageData) => {
     if (previousPageData && !previousPageData.length) return null
     return ['/transactions', { ..._query, page: String(pageIndex + 1) }]
   }
 
-export const useTransactionsData = (query?: QueryParams) => {
-  const _query = useMemo(
-    () => {
-      // console.log('!!! query', query)
-      return { ...initialParams, ...query }
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [],
-  )
-
+export const useTransactionsData = (query?: TransactionsQueryParams) => {
   const { data, size, setSize, isLoading } = useSWRInfinite(
-    transactionsApiKey(_query),
-    ([url, query]: [string, QueryParams]) => {
-      return fetchWithParams<TransactionValue[]>(url, query)
+    transactionsApiKey({ ...initialParams, ...query }),
+    ([url, query]: [string, TransactionsQueryParams]) => {
+      return fetchWithParams<TransactionValue[], TransactionsQueryParams>(
+        url,
+        query,
+      )
     },
     {
       revalidateFirstPage: false,
@@ -54,6 +47,7 @@ export const useTransactionsData = (query?: QueryParams) => {
     data: data ? (data.flat() as TransactionValue[]) : [],
     isLoading,
     isLoadingMore,
+    endOfData: data && data[data.length - 1]?.length === 0,
     nextPage,
   }
 }

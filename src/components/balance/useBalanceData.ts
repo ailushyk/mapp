@@ -1,12 +1,24 @@
 import { useMemo } from 'react'
 import useSWR from 'swr'
 
-import { fetcher } from '@/libs/api/fetcher.ts'
+import { FiltersFormValues } from '@/components/filters/Filters.tsx'
+import { fetchWithParams } from '@/libs/api/fetch-with-params.ts'
+import { TransactionsQueryParams } from '@/pages/transactions/useTransactionsData.ts'
 import { TransactionValue } from '@/types.ts'
 
-export const useBalanceData = () => {
-  const { data, isLoading } = useSWR(['/transactions'], ([url]) =>
-    fetcher<TransactionValue[]>({ url }),
+export const useBalanceData = ({
+  filters,
+}: {
+  filters?: FiltersFormValues
+}) => {
+  const { data, isLoading } = useSWR(
+    ['/transactions', { ...filters }],
+    ([url, filters]) => {
+      return fetchWithParams<TransactionValue[], TransactionsQueryParams>(
+        url,
+        filters,
+      )
+    },
   )
 
   /**

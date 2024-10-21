@@ -1,17 +1,25 @@
+import { env } from '@/env.ts'
 import { fetcher } from '@/libs/api/fetcher.ts'
+import { sleep } from '@/libs/sleep.ts'
 import { ApiRequestParams } from '@/types.ts'
 
-export const fetchWithParams = async <T>(
+export const fetchWithParams = async <T, P extends ApiRequestParams>(
   url: string,
-  params: ApiRequestParams,
+  { page, limit, sort, order, ...params }: P,
 ) => {
-  const _params = new URLSearchParams({
-    ...(params.q && { q: params.q }),
-    ...(params.page && { _page: params.page }),
-    ...(params.limit && { _limit: params.limit }),
-    ...(params.sort && { _sort: params.sort }),
-    ...(params.order && { _order: params.order }),
-  })
+  await sleep(300) // TODO: delay for demo purposes
+
+  const queryParams = {
+    ...((page || page === '1') && { _page: page }),
+    ...((limit || limit === String(env.LIMIT)) && { _limit: limit }),
+    ...(sort && { _sort: sort }),
+    ...(order && { _order: order }),
+    ...Object.fromEntries(
+      Object.entries(params).filter(([, value]) => !!value),
+    ),
+  }
+
+  const _params = new URLSearchParams(queryParams)
   const _url = `${url}?${_params.toString()}`
   return await fetcher<T>({ url: _url })
 }

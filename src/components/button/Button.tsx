@@ -1,12 +1,9 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
+import cn from 'clsx'
 
 import './button.css'
 
-import cn from 'clsx'
-
-type ButtonProps = {
-  children: React.ReactNode
-  onClick?: () => void | Promise<void>
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?:
     | 'primary'
     | 'secondary'
@@ -15,27 +12,33 @@ type ButtonProps = {
     | 'ghost'
     | 'outline'
     | 'icon'
+  size?: 'sm' | 'md' | 'lg'
 }
 
-export const Button = ({
-  children,
-  onClick,
-  variant = 'primary',
-}: ButtonProps) => {
-  return (
-    <button
-      onClick={onClick}
-      className={cn('button', {
-        'button--primary': variant === 'primary',
-        'button--secondary': variant === 'secondary',
-        'button--accent': variant === 'accent',
-        'button--destructive': variant === 'destructive',
-        'button--ghost': variant === 'ghost',
-        'button--outline': variant === 'outline',
-        'button--icon': variant === 'icon',
-      })}
-    >
-      {children}
-    </button>
-  )
-}
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ children, onClick, variant = 'primary', size = 'md', ...rest }, ref) => {
+    return (
+      <button
+        ref={ref}
+        className={cn('button', {
+          'button--primary': variant === 'primary',
+          'button--secondary': variant === 'secondary',
+          'button--accent': variant === 'accent',
+          'button--destructive': variant === 'destructive',
+          'button--ghost': variant === 'ghost',
+          'button--outline': variant === 'outline',
+          'button--icon': variant === 'icon',
+          'button--sm': size === 'sm',
+          'button--md': size === 'md',
+          'button--lg': size === 'lg',
+        })}
+        onClick={onClick}
+        {...rest}
+      >
+        {children}
+      </button>
+    )
+  },
+)
+
+Button.displayName = 'Button'
