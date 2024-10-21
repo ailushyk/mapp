@@ -2,8 +2,8 @@ import { useState } from 'react'
 
 import { Avatar } from '@/components/avatar/Avatar.tsx'
 import { Box } from '@/components/box/Box.tsx'
-import { Button } from '@/components/button/Button.tsx'
 import { DateTime } from '@/components/date-tiem/DateTime.tsx'
+import { InfiniteScrollAnchor } from '@/components/infinite-scroll/InfiniteScrollAnchor.tsx'
 import { List } from '@/components/list/List.tsx'
 import { PageTitle } from '@/components/page-title/PageTitle.tsx'
 import { Transaction } from '@/components/transaction/Transaction.tsx'
@@ -11,7 +11,7 @@ import { useTransactionsData } from '@/pages/transactions/useTransactionsData.ts
 
 export const TransactionsPage = () => {
   const [q, setQ] = useState<string | undefined>()
-  const { data, isLoading, nextPage } = useTransactionsData({
+  const { data, isLoading, isLoadingMore, nextPage } = useTransactionsData({
     q,
   })
 
@@ -39,8 +39,15 @@ export const TransactionsPage = () => {
             <Transaction.Amount>{transaction.amount}</Transaction.Amount>
           </Transaction.ListItem>
         ))}
+
+        <InfiniteScrollAnchor
+          loadMore={async (inView) => {
+            if (inView) await nextPage()
+          }}
+        >
+          {isLoadingMore ? 'Loading...' : null}
+        </InfiniteScrollAnchor>
       </List>
-      <Button onClick={() => nextPage()}>Load More</Button>
     </main>
   )
 }

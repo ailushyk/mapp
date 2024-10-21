@@ -26,14 +26,14 @@ const transactionsApiKey =
 export const useTransactionsData = (query?: QueryParams) => {
   const _query = useMemo(
     () => {
-      console.log('!!! query', query)
+      // console.log('!!! query', query)
       return { ...initialParams, ...query }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
   )
 
-  const { data, size, setSize } = useSWRInfinite(
+  const { data, size, setSize, isLoading } = useSWRInfinite(
     transactionsApiKey(_query),
     ([url, query]: [string, QueryParams]) => {
       return fetchWithParams<TransactionValue[]>(url, query)
@@ -43,13 +43,17 @@ export const useTransactionsData = (query?: QueryParams) => {
     },
   )
 
+  const isLoadingMore =
+    isLoading || (size > 0 && data && typeof data[size - 1] === 'undefined')
+
   const nextPage = async () => {
     await setSize(size + 1)
   }
 
   return {
     data: data ? (data.flat() as TransactionValue[]) : [],
-    isLoading: !data,
+    isLoading,
+    isLoadingMore,
     nextPage,
   }
 }
