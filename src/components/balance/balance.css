@@ -1,0 +1,7 @@
+.balance {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--text-4xl);
+}

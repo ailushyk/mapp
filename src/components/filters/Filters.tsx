@@ -19,11 +19,10 @@ export type FiltersFormValues = z.infer<typeof filtersSchema>
 
 interface FiltersProps {
   values?: FiltersFormValues
-  isDisabled?: boolean
   onChange: (params: FiltersFormValues) => void
 }
 
-export function Filters({ values, isDisabled, onChange }: FiltersProps) {
+export function Filters({ values, onChange }: FiltersProps) {
   const form = useForm<FiltersFormValues>({
     resolver: zodResolver(filtersSchema),
     defaultValues: values,
@@ -72,7 +71,7 @@ export function Filters({ values, isDisabled, onChange }: FiltersProps) {
           )}
         />
 
-        <Button type="submit" size="sm" variant="secondary">
+        <Button type="submit" size="sm">
           Search
         </Button>
       </form>

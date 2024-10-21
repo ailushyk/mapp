@@ -12,11 +12,8 @@ import { List } from '@/components/list/List.tsx'
 import { Loading } from '@/components/Loading.tsx'
 import { PageTitle } from '@/components/page-title/PageTitle.tsx'
 import { Transaction } from '@/components/transaction/Transaction.tsx'
-import {
-  TransactionForm,
-  TransactionFormValues,
-} from '@/components/transaction/TransactionForm.tsx'
-import { fetcher } from '@/libs/api/fetcher.ts'
+import { TransactionForm } from '@/components/transaction/TransactionForm.tsx'
+import { TransactionsTopPanel } from '@/components/transaction/TransactionsTopPanel.tsx'
 import { useTransactionsData } from '@/pages/transactions/useTransactionsData.ts'
 import { TransactionValue } from '@/types.ts'
 
@@ -25,56 +22,33 @@ export const TransactionsPage = () => {
     q: '',
     beneficiary: '',
   })
-  const { data, isLoadingMore, endOfData, nextPage, mutate } =
+  const { data, isLoadingMore, endOfData, nextPage, addTransaction } =
     useTransactionsData({
       ...filters,
     })
-  const transactions = data ? (data.flat() as TransactionValue[]) : []
 
-  const addTransaction = async (values: TransactionFormValues) => {
-    try {
-      const body = JSON.stringify({
-        ...values,
-        date: new Date().toISOString(),
-      })
-      const result: Awaited<TransactionValue | null> = await fetcher({
-        url: '/transactions',
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body,
-      })
-      if (result && data) {
-        await mutate([[result], ...data])
-        alert('Transaction added')
-      }
-    } catch (e) {
-      alert('Error adding transaction')
-      console.error(e)
-    }
-  }
+  const transactions = data ? (data.flat() as TransactionValue[]) : []
 
   return (
     <main>
       <PageTitle>Transactions Page</PageTitle>
 
-      <Box flex="column" className="mb-8">
-        <Box className="border p-4">
+      <TransactionsTopPanel>
+        <Box className="ttp-form">
           <Heading level={2}>Add Transaction</Heading>
           <TransactionForm onSubmit={addTransaction} />
         </Box>
 
-        <Box className="border p-4">
+        <Box className="ttp-balance">
           <Heading level={2}>Balance</Heading>
           <Balance filters={filters} />
         </Box>
 
-        <Box className="border p-4">
+        <Box className="ttp-filter">
           <Heading level={2}>Filters</Heading>
           <Filters values={filters} onChange={setFilters} />
         </Box>
-      </Box>
+      </TransactionsTopPanel>
 
       <List>
         <Heading level={2}>Transactions</Heading>

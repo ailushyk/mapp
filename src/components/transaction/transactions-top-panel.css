@@ -1,0 +1,44 @@
+.transactions-top-panel {
+  display: grid;
+  gap: 2rem;
+  max-width: 40rem;
+  margin-inline: auto;
+  margin-bottom: 2rem;
+
+  grid-template-columns: 1fr;
+  grid-template-areas:
+      "ttp-form"
+      "ttp-balance"
+      "ttp-filter";
+}
+.transactions-top-panel .box {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+}
+
+@media (min-width: 768px) {
+  .transactions-top-panel {
+    max-width: 64rem;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      "ttp-balance ttp-form"
+      "ttp-filter ttp-form";
+  }
+}
+
+.ttp-balance {
+  grid-area: ttp-balance;
+  background-color: var(--accent-bg);
+}
+
+.ttp-form {
+  grid-area: ttp-form;
+  background-color: var(--accent-bg);
+}
+
+.ttp-filter {
+  grid-area: ttp-filter;
+  background-color: var(--accent-bg);
+}
