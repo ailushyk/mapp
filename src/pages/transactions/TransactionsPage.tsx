@@ -1,40 +1,21 @@
-import { useEffect, useState } from 'react'
-
 import { Avatar } from '@/components/avatar/Avatar.tsx'
 import { Box } from '@/components/box/Box.tsx'
+import { Button } from '@/components/button/Button.tsx'
 import { DateTime } from '@/components/date-tiem/DateTime.tsx'
 import { List } from '@/components/list/List.tsx'
 import { PageTitle } from '@/components/page-title/PageTitle.tsx'
 import { Transaction } from '@/components/transaction/Transaction.tsx'
-import { fetcher } from '@/libs/fetcher.ts'
-import { sortByDate } from '@/libs/sort-by-date.ts'
-import type { TransactionValue } from '@/types.ts'
-
-const fetchTransactions = async (): Promise<TransactionValue[]> => {
-  const data = await fetcher<TransactionValue[]>({
-    url: '/transactions',
-  })
-  return sortByDate(data)
-}
+import { useTransactionsData } from '@/pages/transactions/useTransactionsData.ts'
 
 export const TransactionsPage = () => {
-  const [transactions, setTransactions] = useState<TransactionValue[]>([])
-
-  useEffect(() => {
-    fetchTransactions()
-      .then((data) => setTransactions(data))
-      .catch(console.error)
-    return () => {
-      setTransactions([])
-    }
-  }, [])
+  const { data, nextPage } = useTransactionsData()
 
   return (
     <main>
       <PageTitle>Transactions</PageTitle>
 
       <List>
-        {transactions.map((transaction) => (
+        {data.map((transaction) => (
           <Transaction.ListItem key={transaction.id}>
             <Avatar alt={transaction.beneficiary} />
             <Box className="w-full">
@@ -47,6 +28,7 @@ export const TransactionsPage = () => {
           </Transaction.ListItem>
         ))}
       </List>
+      <Button onClick={nextPage}>Load More</Button>
     </main>
   )
 }
