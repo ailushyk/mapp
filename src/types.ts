@@ -1,4 +1,4 @@
-export interface Transaction {
+export interface TransactionValue {
   id: number
   amount: number
   beneficiary: string

@@ -1,69 +1,37 @@
 import React from 'react'
+import cn from 'clsx'
 
-import { Heading } from '@/components/Heading.tsx'
-import { Transaction } from '@/types.ts'
-
-import './transaction-card.css'
-
+import { Box } from '@/components/box/Box.tsx'
 import { currency } from '@/libs/currency.ts'
-import { formatDate } from '@/libs/format-date.ts'
 
-interface TransactionCardProps {
-  transaction: Transaction
-  children?: React.ReactNode
-}
+import './transaction.css'
 
-export const TransactionListItem = ({
-  children,
-}: {
+type TransactionProps = {
   children: React.ReactNode
-}) => {
-  return <div className="transaction-list-item">{children}</div>
 }
 
-export const TransactionBeneficiary = ({ children }: { children: string }) => {
-  return <div>{children}</div>
+// TODO: Implement the Transaction component. Refactor TransactionCard to use the new Transaction component.
+export const Transaction = ({ children }: TransactionProps) => {
+  return <div className="transaction">{children}</div>
 }
 
-export const TransactionAmount = ({ children }: { children: number }) => {
-  return <div>{currency(children)}</div>
+Transaction.Beneficiary = function Beneficiary({ children }: TransactionProps) {
+  return <div className="transaction__beneficiary">{children}</div>
 }
 
-export const TransactionCard = ({
-  children,
-  transaction: { id, account, address, amount, beneficiary, description, date },
-}: TransactionCardProps) => {
+Transaction.Amount = function Amount({ children }: { children: number }) {
   return (
-    <article className="transaction-card">
-      <header className="transaction-header">
-        <Heading level={2}>Transaction #{id}</Heading>
-        <p>
-          <time dateTime={date}>{formatDate(date, 'long')}</time>
-        </p>
-      </header>
-
-      <section className="transaction-details">
-        <p>
-          <strong>Amount:</strong> {amount} PLN
-        </p>
-        <p>
-          <strong>Beneficiary:</strong> {beneficiary}
-        </p>
-        <p>
-          <strong>Account:</strong> {account}
-        </p>
-        <p>
-          <strong>Address:</strong> {address}
-        </p>
-      </section>
-
-      <section className="transaction-description">
-        <p>
-          <strong>Description:</strong> {description}
-        </p>
-      </section>
-
-      <div>{children}</div>
-    </article>
+    <div
+      className={cn('transaction__amount', {
+        'transaction__amount--positive': children > 0,
+        'transaction__amount--negative': children < 0,
+      })}
+    >
+      {currency(children)}
+    </div>
   )
+}
+
+Transaction.ListItem = function ListItem({ children }: TransactionProps) {
+  return <Box className="transaction-list-item">{children}</Box>
 }

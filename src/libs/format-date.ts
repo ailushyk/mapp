@@ -1,26 +1,29 @@
 type DateFormat = 'short' | 'long' | 'date'
 
+interface DateFormatOptions {
+  format?: DateFormat
+}
 export const formatDate = (
   isoString: string,
-  format: DateFormat = 'short',
+  options?: DateFormatOptions,
 ): string => {
   const date = new Date(isoString)
   if (isNaN(date.getTime())) {
     return 'Invalid date'
   }
 
-  let options: Intl.DateTimeFormatOptions
+  let _options: Intl.DateTimeFormatOptions
 
-  switch (format) {
+  switch (options?.format) {
     case 'date':
-      options = {
+      _options = {
         year: 'numeric',
         month: '2-digit',
         day: '2-digit',
       }
       break
     case 'long':
-      options = {
+      _options = {
         year: 'numeric',
         month: 'long',
         day: 'numeric',
@@ -30,7 +33,7 @@ export const formatDate = (
       }
       break
     default:
-      options = {
+      _options = {
         year: 'numeric',
         month: '2-digit',
         day: '2-digit',
@@ -40,5 +43,5 @@ export const formatDate = (
       }
       break
   }
-  return date.toLocaleString('pl-PL', options)
+  return date.toLocaleString('pl-PL', _options)
 }

@@ -1,0 +1,31 @@
+.transaction {
+}
+
+.transaction__amount {
+}
+
+.transaction__amount--positive {
+  color: var(--positive);
+}
+
+.transaction__amount--negative {
+  color: var(--negative);
+}
+
+/* LIST ITEM */
+.transaction-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  transition: background-color var(--transition-time);
+}
+
+.transaction-list-item:hover {
+  background-color: var(--secondary-bg);
+}

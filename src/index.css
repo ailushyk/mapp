@@ -25,6 +25,8 @@
   --chart-3: hsl(30 80% 55%);
   --chart-4: hsl(280 65% 60%);
   --chart-5: hsl(340 75% 55%);
+  --positive: hsl(158, 74%, 65%);
+  --negative: hsl(0, 75%, 72%);
 
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
@@ -36,7 +38,7 @@
   --text-4xl: 2.25rem;
 
   --radius: 0.5rem;
-  --transition-time: 0.1s;
+  --transition-time: 0.2s;
 }
 
 :root {
@@ -60,3 +62,7 @@ body, #root {
   min-height: 100vh;
 }
 
+/* Utils */
+.w-full {
+  width: 100%;
+}
