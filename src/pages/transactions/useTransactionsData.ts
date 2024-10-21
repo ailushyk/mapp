@@ -70,13 +70,32 @@ export const useTransactionsData = (query?: TransactionsQueryParams) => {
     }
   }
 
+  const removeTransaction = async (id: number) => {
+    try {
+      const result = await fetcher({
+        url: `/transactions/${id}`,
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      if (result && data) {
+        await mutate(data.map((page) => page.filter((t) => t.id !== id)))
+        alert('Transaction removed')
+      }
+    } catch (e) {
+      alert('Error removing transaction')
+      console.error(e)
+    }
+  }
+
   return {
     data,
     isLoading,
     isLoadingMore,
     endOfData: data && data[data.length - 1]?.length === 0,
     nextPage,
-    mutate,
     addTransaction,
+    removeTransaction,
   }
 }

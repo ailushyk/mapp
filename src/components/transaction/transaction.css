@@ -4,8 +4,30 @@
 .transaction__amount {
 }
 
+.transaction__actions {
+  position: absolute;
+  display: none;
+  height: 100%;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  padding-inline: 0.75rem;
+  color: var(--foreground);
+  border-radius: var(--radius);
+  background-color: transparent;
+}
+.transaction:hover .transaction__actions {
+  /*display: flex;*/
+  display: block;
+  justify-content: center;
+  align-content: center;
+  background-color: var(--destructive-bg);
+  transition: background-color var(--transition-time);
+}
+
 /* LIST ITEM */
 .transaction-list-item {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;

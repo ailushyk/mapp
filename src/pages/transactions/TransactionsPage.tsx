@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { Avatar } from '@/components/avatar/Avatar.tsx'
 import { Balance } from '@/components/balance/Balance.tsx'
 import { Box } from '@/components/box/Box.tsx'
+import { Button } from '@/components/button/Button.tsx'
 import { DateTime } from '@/components/date-tiem/DateTime.tsx'
 import { Filters, FiltersFormValues } from '@/components/filters/Filters.tsx'
 import { Heading } from '@/components/Heading.tsx'
@@ -22,10 +23,16 @@ export const TransactionsPage = () => {
     q: '',
     beneficiary: '',
   })
-  const { data, isLoadingMore, endOfData, nextPage, addTransaction } =
-    useTransactionsData({
-      ...filters,
-    })
+  const {
+    data,
+    isLoadingMore,
+    endOfData,
+    nextPage,
+    addTransaction,
+    removeTransaction,
+  } = useTransactionsData({
+    ...filters,
+  })
 
   const transactions = data ? (data.flat() as TransactionValue[]) : []
 
@@ -61,7 +68,19 @@ export const TransactionsPage = () => {
               </Transaction.Beneficiary>
               <DateTime format="short">{transaction.date}</DateTime>
             </Box>
-            <Transaction.Amount>{transaction.amount}</Transaction.Amount>
+            <Box>
+              <Transaction.Amount>{transaction.amount}</Transaction.Amount>
+              <Transaction.Actions>
+                <Button
+                  variant="icon"
+                  onClick={() => {
+                    removeTransaction(transaction.id)
+                  }}
+                >
+                  X
+                </Button>
+              </Transaction.Actions>
+            </Box>
           </Transaction.ListItem>
         ))}
 

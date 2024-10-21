@@ -23,6 +23,10 @@ Transaction.Amount = function Amount({ children }: { children: number }) {
   return <Currency className="transaction__amount">{children}</Currency>
 }
 
+Transaction.Actions = function Actions({ children }: TransactionProps) {
+  return <Box className="transaction__actions">{children}</Box>
+}
+
 Transaction.ListItem = function ListItem({ children }: TransactionProps) {
-  return <Box className="transaction-list-item">{children}</Box>
+  return <Box className="transaction transaction-list-item">{children}</Box>
 }
