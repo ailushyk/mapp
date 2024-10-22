@@ -1,7 +1,6 @@
-import { useState } from 'react'
-
 import { Balance } from '@/components/balance/Balance.tsx'
-import { Filters, FiltersFormValues } from '@/components/filters/Filters.tsx'
+import { Filters } from '@/components/filters/Filters.tsx'
+import { useFilters } from '@/components/filters/useFilters.ts'
 import { InfiniteScrollAnchor } from '@/components/infinite-scroll/InfiniteScrollAnchor.tsx'
 import { PageTitle } from '@/components/page-title/PageTitle.tsx'
 import { Transaction } from '@/components/transaction/Transaction.tsx'
@@ -19,10 +18,7 @@ import { List } from '@/ui/list/List.tsx'
 import { Loading } from '@/ui/Loading.tsx'
 
 export default function TransactionsPage() {
-  const [filters, setFilters] = useState<FiltersFormValues>({
-    q: '',
-    beneficiary: '',
-  })
+  const { filters, updateFilters } = useFilters()
   const {
     data,
     isLoadingMore,
@@ -53,7 +49,7 @@ export default function TransactionsPage() {
 
         <Box className="ttp-filter">
           <Heading level={2}>Filters</Heading>
-          <Filters values={filters} onChange={setFilters} />
+          <Filters values={filters} onChange={updateFilters} />
         </Box>
       </TransactionsTopPanel>
 
@@ -73,8 +69,8 @@ export default function TransactionsPage() {
               <Transaction.Actions>
                 <Button
                   variant="icon"
-                  onClick={() => {
-                    removeTransaction(transaction.id)
+                  onClick={async () => {
+                    await removeTransaction(transaction.id)
                   }}
                 >
                   X

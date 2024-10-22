@@ -70,7 +70,7 @@ export const useTransactionsData = (query?: TransactionsQueryParams) => {
     }
   }
 
-  const removeTransaction = async (id: number) => {
+  const removeTransaction = async (id: number): Promise<void> => {
     try {
       const result = await fetcher({
         url: `/transactions/${id}`,
