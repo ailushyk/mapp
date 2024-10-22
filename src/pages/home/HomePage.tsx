@@ -1,7 +1,7 @@
+import { PageTitle } from '@/components/page-title/PageTitle.tsx'
 import { Header } from '@/ui/header/Header.tsx'
+import { Heading } from '@/ui/Heading.tsx'
 import { NavLink } from '@/ui/link/NavLink.tsx'
-import { PageTitle } from '../../components/page-title/PageTitle.tsx'
-import { Heading } from '../../ui/Heading.tsx'
 
 import './home-page.css'
 

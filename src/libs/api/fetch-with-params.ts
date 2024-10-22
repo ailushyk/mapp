@@ -1,5 +1,5 @@
-import { env } from '@/env.ts'
 import { fetcher } from '@/libs/api/fetcher.ts'
+import { env } from '@/env.ts'
 import { ApiRequestParams } from '@/types.ts'
 
 export const fetchWithParams = async <T, P extends ApiRequestParams>(

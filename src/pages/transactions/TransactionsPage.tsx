@@ -1,3 +1,4 @@
+import { useTransactionsData } from '@/pages/transactions/useTransactionsData.ts'
 import { Balance } from '@/components/balance/Balance.tsx'
 import { Filters } from '@/components/filters/Filters.tsx'
 import { useFilters } from '@/components/filters/useFilters.ts'
@@ -6,8 +7,6 @@ import { PageTitle } from '@/components/page-title/PageTitle.tsx'
 import { Transaction } from '@/components/transaction/Transaction.tsx'
 import { TransactionForm } from '@/components/transaction/TransactionForm.tsx'
 import { TransactionsTopPanel } from '@/components/transaction/TransactionsTopPanel.tsx'
-import { useTransactionsData } from '@/pages/transactions/useTransactionsData.ts'
-import { TransactionValue } from '@/types.ts'
 import { Avatar } from '@/ui/avatar/Avatar.tsx'
 import { Box } from '@/ui/box/Box.tsx'
 import { Button } from '@/ui/button/Button.tsx'
@@ -16,6 +15,7 @@ import { Heading } from '@/ui/Heading.tsx'
 import { InfoMessage } from '@/ui/info-message/InfoMessage.tsx'
 import { List } from '@/ui/list/List.tsx'
 import { Loading } from '@/ui/Loading.tsx'
+import type { TransactionValue } from '@/types.ts'
 
 export default function TransactionsPage() {
   const { filters, updateFilters } = useFilters()

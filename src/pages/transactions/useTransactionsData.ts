@@ -1,9 +1,9 @@
 import useSWRInfinite, { SWRInfiniteKeyLoader } from 'swr/infinite'
 
 import { TransactionFormValues } from '@/components/transaction/TransactionForm.tsx'
-import { env } from '@/env.ts'
 import { fetchWithParams } from '@/libs/api/fetch-with-params.ts'
 import { fetcher } from '@/libs/api/fetcher.ts'
+import { env } from '@/env.ts'
 import type { ApiRequestParams, TransactionValue } from '@/types.ts'
 
 export interface TransactionsQueryParams extends ApiRequestParams {
@@ -41,6 +41,8 @@ export const useTransactionsData = (query?: TransactionsQueryParams) => {
 
   const isLoadingMore =
     isLoading || (size > 0 && data && typeof data[size - 1] === 'undefined')
+
+  const endOfData = data && data[data.length - 1]?.length === 0
 
   const nextPage = async () => {
     await setSize(size + 1)
@@ -97,7 +99,7 @@ export const useTransactionsData = (query?: TransactionsQueryParams) => {
     data,
     isLoading,
     isLoadingMore,
-    endOfData: data && data[data.length - 1]?.length === 0,
+    endOfData,
     nextPage,
     addTransaction,
     removeTransaction,

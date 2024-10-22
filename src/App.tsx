@@ -1,9 +1,9 @@
-import { GitHubIcon } from '@/icons/github.tsx'
 import { Router } from '@/pages/Router.tsx'
+import { Layout } from '@/components/layout/Layout.tsx'
+import { Nav, NavItem } from '@/components/nav/Nav.tsx'
 import { Link } from '@/ui/link/Link.tsx'
 import { NavLink } from '@/ui/link/NavLink.tsx'
-import { Layout } from './components/layout/Layout.tsx'
-import { Nav, NavItem } from './components/nav/Nav.tsx'
+import { GitHubIcon } from '@/icons/github.tsx'
 
 function App() {
   return (

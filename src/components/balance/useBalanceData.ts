@@ -1,9 +1,9 @@
 import { useMemo } from 'react'
 import useSWR from 'swr'
 
+import { TransactionsQueryParams } from '@/pages/transactions/useTransactionsData.ts'
 import { FiltersFormValues } from '@/components/filters/Filters.tsx'
 import { fetchWithParams } from '@/libs/api/fetch-with-params.ts'
-import { TransactionsQueryParams } from '@/pages/transactions/useTransactionsData.ts'
 import { TransactionValue } from '@/types.ts'
 
 export const useBalanceData = ({

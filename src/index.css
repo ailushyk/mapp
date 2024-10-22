@@ -58,12 +58,13 @@
 }
 
 @media (min-width: 768px) {
- :root {
+  :root {
     font-size: 16px;
   }
 }
 
-body, #root {
+body,
+#root {
   min-width: 320px;
   min-height: 100vh;
 }

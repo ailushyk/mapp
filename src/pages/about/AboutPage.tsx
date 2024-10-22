@@ -1,9 +1,9 @@
-import { GitHubIcon } from '@/icons/github.tsx'
+import { PageTitle } from '@/components/page-title/PageTitle.tsx'
 import { Box } from '@/ui/box/Box.tsx'
 import { Container } from '@/ui/container/Container.tsx'
 import { InfoMessage } from '@/ui/info-message/InfoMessage.tsx'
 import { Link } from '@/ui/link/Link.tsx'
-import { PageTitle } from '../../components/page-title/PageTitle.tsx'
+import { GitHubIcon } from '@/icons/github.tsx'
 
 export default function AboutPage() {
   return (
