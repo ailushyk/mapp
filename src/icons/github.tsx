@@ -1,4 +1,4 @@
-export const GitHubIcon = (props) => (
+export const GitHubIcon = () => (
   <svg
     aria-hidden="true"
     className="octicon octicon-mark-github"
@@ -6,7 +6,6 @@ export const GitHubIcon = (props) => (
     viewBox="0 0 16 16"
     width={24}
     fill="currentColor"
-    {...props}
   >
     <path
       fillRule="evenodd"

@@ -5,7 +5,7 @@ export const fetcher = async <T>({
   ...options
 }: {
   url: string
-  method: 'GET' | 'POST' | 'PUT' | 'DELETE'
+  method?: 'GET' | 'POST' | 'PUT' | 'DELETE'
   headers?: Record<string, string>
   body?: string
 }): Promise<T | null> => {
