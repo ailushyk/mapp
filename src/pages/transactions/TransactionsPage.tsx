@@ -18,7 +18,7 @@ import { TransactionsTopPanel } from '@/components/transaction/TransactionsTopPa
 import { useTransactionsData } from '@/pages/transactions/useTransactionsData.ts'
 import { TransactionValue } from '@/types.ts'
 
-export const TransactionsPage = () => {
+export default function TransactionsPage() {
   const [filters, setFilters] = useState<FiltersFormValues>({
     q: '',
     beneficiary: '',

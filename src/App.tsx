@@ -1,8 +1,9 @@
+import { NavLink } from '@/components/link/NavLink.tsx'
 import { GitHubIcon } from '@/icons/github.tsx'
+import { Router } from '@/pages/Router.tsx'
 import { Layout } from './components/layout/Layout.tsx'
-import { Link } from './components/Link.tsx'
+import { Link } from './components/link/Link.tsx'
 import { Nav, NavItem } from './components/Nav.tsx'
-import { TransactionsPage } from './pages/transactions/TransactionsPage.tsx'
 
 function App() {
   return (
@@ -10,19 +11,19 @@ function App() {
       <Layout.Header>
         <Nav>
           <NavItem>
-            <Link href="/">Home</Link>
+            <NavLink href="/">Home</NavLink>
           </NavItem>
           <NavItem>
-            <Link href="/transactions">Transactions</Link>
+            <NavLink href="/transactions">Transactions</NavLink>
           </NavItem>
           <NavItem>
-            <Link href="/about">About</Link>
+            <NavLink href="/about">About</NavLink>
           </NavItem>
         </Nav>
       </Layout.Header>
 
       <Layout.Content>
-        <TransactionsPage />
+        <Router />
       </Layout.Content>
 
       <Layout.Footer>

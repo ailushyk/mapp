@@ -5,7 +5,7 @@ import { PageTitle } from '../../components/page-title/PageTitle.tsx'
 
 import './home-page.css'
 
-export const HomePage = () => {
+export default function HomePage() {
   return (
     <main>
       <Header>
