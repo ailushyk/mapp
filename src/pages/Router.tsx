@@ -1,8 +1,8 @@
 import React, { Suspense, useEffect, useState } from 'react'
 import history from 'history/browser'
 
-import { InfoMessage } from '@/components/info-message/InfoMessage.tsx'
-import { Loading } from '@/components/Loading.tsx'
+import { InfoMessage } from '@/ui/info-message/InfoMessage.tsx'
+import { Loading } from '@/ui/Loading.tsx'
 
 const HomePage = React.lazy(() => import('@/pages/home/HomePage.tsx'))
 const AboutPage = React.lazy(() => import('@/pages/about/AboutPage.tsx'))

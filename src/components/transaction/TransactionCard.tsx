@@ -1,8 +1,8 @@
 import React from 'react'
 
-import { DateTime } from '@/components/date-tiem/DateTime.tsx'
-import { Header } from '@/components/header/Header.tsx'
-import { Heading } from '@/components/Heading.tsx'
+import { DateTime } from '@/ui/date-tiem/DateTime.tsx'
+import { Header } from '@/ui/header/Header.tsx'
+import { Heading } from '@/ui/Heading.tsx'
 
 import './transaction-card.css'
 

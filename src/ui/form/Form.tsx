@@ -11,8 +11,8 @@ import {
   useFormContext,
 } from 'react-hook-form'
 
-import { Label } from '@/components/form/Label.tsx'
-import { useUniqueId } from '@/components/useUniqueId.tsx'
+import { useUniqueId } from '@/libs/useUniqueId.tsx'
+import { Label } from '@/ui/form/Label.tsx'
 
 const Form = FormProvider
 

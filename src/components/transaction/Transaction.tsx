@@ -1,10 +1,10 @@
 import React from 'react'
 
-import { Box } from '@/components/box/Box.tsx'
+import { Box } from '@/ui/box/Box.tsx'
 
 import './transaction.css'
 
-import { Currency } from '@/components/currency/Currency.tsx'
+import { Currency } from '@/ui/currency/Currency.tsx'
 
 type TransactionProps = {
   children: React.ReactNode

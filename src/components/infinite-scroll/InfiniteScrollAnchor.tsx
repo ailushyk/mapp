@@ -9,7 +9,6 @@ export const InfiniteScrollAnchor = ({
   loadMore?: (inView: boolean) => Promise<void>
 }) => {
   return (
-    // eslint-disable-next-line @typescript-eslint/no-misused-promises
     <InView className="infinite-scroll-anchor" onChange={loadMore}>
       {children}
     </InView>

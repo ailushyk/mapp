@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Heading } from '../Heading.tsx'
+import { Heading } from '../../ui/Heading.tsx'
 
 import './page-title.css'
 

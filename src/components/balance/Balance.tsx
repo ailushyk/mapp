@@ -1,11 +1,11 @@
 import { useBalanceData } from '@/components/balance/useBalanceData.ts'
-import { Currency } from '@/components/currency/Currency.tsx'
 import { FiltersFormValues } from '@/components/filters/Filters.tsx'
-import { Loading } from '@/components/Loading.tsx'
+import { Currency } from '@/ui/currency/Currency.tsx'
+import { Loading } from '@/ui/Loading.tsx'
 
 import './balance.css'
 
-import { Box } from '@/components/box/Box.tsx'
+import { Box } from '@/ui/box/Box.tsx'
 
 interface BalanceProps {
   filters?: FiltersFormValues

@@ -2,7 +2,8 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
 
-import { Button } from '@/components/button/Button.tsx'
+import { transactionSchema } from '@/components/transaction/transaction-schema.ts'
+import { Button } from '@/ui/button/Button.tsx'
 import {
   Form,
   FormControl,
@@ -11,9 +12,8 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/form/Form.tsx'
-import { Input } from '@/components/form/Input.tsx'
-import { transactionSchema } from '@/components/transaction/transaction-schema.ts'
+} from '@/ui/form/Form.tsx'
+import { Input } from '@/ui/form/Input.tsx'
 
 export type TransactionFormValues = z.infer<typeof transactionSchema>
 

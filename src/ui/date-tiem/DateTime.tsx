@@ -1,4 +1,4 @@
-import { formatDate } from '@/libs/format-date.ts'
+import { formatDate } from '@/libs/date/format-date.ts'
 
 interface DateTimeProps {
   children: string

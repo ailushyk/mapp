@@ -1,9 +1,9 @@
-import { NavLink } from '@/components/link/NavLink.tsx'
 import { GitHubIcon } from '@/icons/github.tsx'
 import { Router } from '@/pages/Router.tsx'
+import { Link } from '@/ui/link/Link.tsx'
+import { NavLink } from '@/ui/link/NavLink.tsx'
 import { Layout } from './components/layout/Layout.tsx'
-import { Link } from './components/link/Link.tsx'
-import { Nav, NavItem } from './components/Nav.tsx'
+import { Nav, NavItem } from './components/nav/Nav.tsx'
 
 function App() {
   return (

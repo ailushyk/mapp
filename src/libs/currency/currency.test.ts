@@ -1,4 +1,4 @@
-import { currency } from './currency'
+import { currency } from './currency.ts'
 
 describe('formatCurrency', () => {
   it('should format the amount in PLN correctly', () => {

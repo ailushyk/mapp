@@ -1,6 +1,6 @@
 import cn from 'clsx'
 
-import { currency } from '@/libs/currency.ts'
+import { currency } from '@/libs/currency/currency.ts'
 
 import './currency.css'
 
