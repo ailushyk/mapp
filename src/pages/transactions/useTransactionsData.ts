@@ -80,7 +80,11 @@ export const useTransactionsData = (query?: TransactionsQueryParams) => {
         },
       })
       if (result && data) {
-        await mutate(data.map((page) => page.filter((t) => t.id !== id)))
+        await mutate(
+          data.map((page) => {
+            return page!.filter((t) => t.id !== id)
+          }),
+        )
         alert('Transaction removed')
       }
     } catch (e) {

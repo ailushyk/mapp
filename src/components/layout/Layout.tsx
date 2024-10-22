@@ -37,8 +37,8 @@ Layout.Content = function Content({ children, ...rest }: LayoutProps) {
 
 Layout.Footer = function Footer({ children, ...rest }: LayoutProps) {
   return (
-    <div className="layout__footer" {...rest}>
+    <footer className="layout__footer" {...rest}>
       {children}
-    </div>
+    </footer>
   )
 }

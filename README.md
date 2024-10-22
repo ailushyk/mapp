@@ -6,6 +6,12 @@
 npm run dev
 ```
 
+## Test
+
+```bash
+npm run test
+```
+
 ## Prod
 
 ### build

@@ -17,9 +17,12 @@
   }
 
   .layout__footer {
+    display: flex;
+    padding: 1rem 3rem;
+    font-size: var(--text-sm);
+    justify-content: space-between;
     background-color: var(--muted-bg);
     color: var(--foreground);
-    padding-inline: 1rem;
   }
 }
 

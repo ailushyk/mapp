@@ -1,16 +1,12 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 
 import './link.css'
 
-export const Link = ({
-  children,
-  href,
-}: {
-  children: React.ReactNode
-  href: string
-}) => {
+interface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {}
+
+export const Link = ({ children, ...rest }: LinkProps) => {
   return (
-    <a href={href} className="link">
+    <a className="link" {...rest}>
       {children}
     </a>
   )
