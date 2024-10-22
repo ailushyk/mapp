@@ -7,7 +7,7 @@
 
   .layout__header {
     color: var(--foreground);
-    padding-inline: 1rem;
+    padding-inline: 3rem;
     border-bottom: 1px solid var(--border);
   }
 
